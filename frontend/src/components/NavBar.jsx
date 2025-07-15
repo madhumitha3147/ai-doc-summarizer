@@ -13,15 +13,12 @@ const NavBar = () => {
         🧠 SummarAI
       </div>
       <div className="space-x-4">
-        <button
-          className="text-gray-700 font-medium"
+        <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
           onClick={() => navigate("/signin")}
         >
           Sign in
         </button>
-        <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
-          Get started →
-        </button>
+        
       </div>
     </nav>
   );

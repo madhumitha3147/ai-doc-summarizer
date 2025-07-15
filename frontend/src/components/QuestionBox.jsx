@@ -47,8 +47,8 @@ const AskQuestion = ({ text }) => {
       <div className="space-y-3">
         {chat.map((entry, idx) => (
           <div key={idx} className="bg-gray-50 p-3 rounded border">
-            <p><strong>Q:</strong> {entry.question}</p>
-            <p><strong>A:</strong> {entry.answer}</p>
+           <p className="text-black"><strong>Q:</strong> {entry.question}</p>
+           <p className="text-purple-700"><strong>A:</strong> {entry.answer}</p>
           </div>
         ))}
       </div>
