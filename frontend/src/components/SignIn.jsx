@@ -1,18 +1,27 @@
 // src/pages/SignIn.jsx
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    // Simulate login or integrate your auth logic
     if (email && password) {
-      console.log("Signed in with", email, password);
-      navigate("/"); // Redirect to home after login
+      // Extract name from email
+      const name = email.split("@")[0];
+      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+
+      const userData = { name: capitalizedName, email };
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      console.log("Signed in as:", userData);
+      navigate("/");
     } else {
       alert("Please enter email and password");
     }
@@ -21,7 +30,9 @@ const SignIn = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-white px-4">
       <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-purple-700 mb-6">Sign In to SummarAI</h2>
+        <h2 className="text-2xl font-bold text-center text-purple-700 mb-6">
+          Sign In to SummarAI
+        </h2>
         <form onSubmit={handleSignIn} className="space-y-4">
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
